@@ -1,0 +1,5 @@
+Ana,30,Vendas,1500
+Rui,40,Admin,1000
+Luis,45,RH,3333
+Maria,55,RH,2000
+Francisco,22,Admin,10000
