@@ -4,26 +4,32 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.ArrayList;
 
+/**
+ * Filtro que junta dois pipes num soh
+ * @author João Marques de Barros Mendes Leal, 46394;
+ * @author Francisco João Guimarães Coimbra de Almeida Araújo, 45701;
+ * @author João Pedro Pereira Becho, 42103
+ *
+ */
 public class CsvPipeMerge extends Thread{
 	private Reader input1;
 	private Reader input2;
 	private Writer output;
-	
+
 	public CsvPipeMerge(Reader input1, Reader input2,Writer output){
 		this.input1 = input1;
 		this.input2 = input2;
 		this.output = output;
 	}
+
 	public void run(){
-		
-		ArrayList<String> list = new ArrayList<String>();
+
 		BufferedReader bfReader1 = new BufferedReader(input1);
 		BufferedReader bfReader2 = new BufferedReader(input2);
-		
+
 		String line,line2;
-		
+
 		try {
 			while((line = bfReader1.readLine()) != null && (line2 = bfReader2.readLine()) != null){
 				if(line != null)
@@ -31,7 +37,7 @@ public class CsvPipeMerge extends Thread{
 				if(line2 != null)
 					output.write(line2 + "\n");
 			}
-			
+
 			input1.close();
 			input2.close();
 			output.close();
@@ -42,8 +48,5 @@ public class CsvPipeMerge extends Thread{
 		catch (IOException e) {
 			System.out.println ("Input/output error: " + e);
 		}
-		
-
-		//System.out.println ("SortByCol finished...");
 	}
 }
