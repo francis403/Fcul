@@ -34,7 +34,6 @@ public class CsvWriter extends Thread{
 	**/
 	
 	public void run() {
-		System.out.println ("Writer started... ");
 		ByteBuffer buffer = ByteBuffer.allocate(100);
 		try {
 			//input.source()

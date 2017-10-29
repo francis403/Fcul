@@ -21,22 +21,17 @@ public class MergeColAGroupByColB extends Thread{
 	}
 	
 	public void run(){
-		ArrayList<String> list = new ArrayList<String>();
 		BufferedReader bf = new BufferedReader(input);
 		String line;
 		try {
 			String prev_comp = null;
-			StringBuilder sb = new StringBuilder();
-			String res;
 			while((line = bf.readLine()) != null) {
-				
 				String[] elems = line.split(",");
-				
-				if(!elems[colB].equals(prev_comp)){
+				if(!elems[colB].equals(prev_comp))
 					output.write("\n"+ elems[colB]);
-				}
-				output.write(" "+elems[colA]);
-				prev_comp = elems[colB]; // o componente seguinte vai ser o anterior
+				
+				output.write(","+elems[colA]);
+				prev_comp = elems[colB];
 				
 			}
 			output.close();

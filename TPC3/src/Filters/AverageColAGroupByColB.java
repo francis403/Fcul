@@ -29,14 +29,7 @@ public class AverageColAGroupByColB extends Thread{
 	
 	public void run(){
 		try {
-			System.out.println("AverageColAGroupByColB is starting...");
-			/**
-			PipedWriter pw = new PipedWriter(); // vai escrever aqui o que nos queremos ver
-			// o pw vai escrever para o pr
-			PipedReader pr = new PipedReader(); // vamos ler o que eu receber do sort
-			pw.connect(pr);
-			**/
-			//SortByCol s = new SortByCol(input, output, colB); // sort pela coluna b
+			
 			BufferedReader bfReader = new BufferedReader(input);
 			ArrayList<String> list = new ArrayList<String>();
 			String l;
@@ -49,7 +42,6 @@ public class AverageColAGroupByColB extends Thread{
 				//s.sort(list, bfReader, colB);
 				String prev_comp = null;
 				double val;
-				output.write("\n\t" + key + "\n");
 				while((l = bfReader.readLine()) != null) {
 					//list.add(l);
 					//output.write(l + "\n");
@@ -57,7 +49,7 @@ public class AverageColAGroupByColB extends Thread{
 					//se o componente anterior for diferente do anterior
 					if(!elems[colB].equals(prev_comp) && prev_comp != null){
 						//mostramos a media anterior
-						output.write(prev_comp + ": " + media/count + "\n");
+						output.write(prev_comp + "," + key +"=" + media/count + "\n");
 						media = 0;
 						count = 0;
 					}
@@ -66,14 +58,13 @@ public class AverageColAGroupByColB extends Thread{
 					count++;
 					prev_comp = elems[colB]; // o componente seguinte vai ser o anterior
 				}
-				output.write(prev_comp + ": " + media/count);
+				output.write(prev_comp + "," + key +"=" + media/count + "\n");
 			}catch(NumberFormatException e){
 				System.out.println("Nao eh possivel calcular a media nos valores dessa coluna");
 			}
 			input.close();
 			output.close();
 			bfReader.close();
-			System.out.println("AverageColAByGroupByColB is closing...");
 		}
 		
 		catch (IOException e) {

@@ -56,7 +56,8 @@ public class SortByCol extends Thread{
 		String line;
 
 		try {
-			
+			if(!bfReader.ready())
+				System.out.println("Not ready");
 			sort(list,bfReader,indice);
 			for(String l : list){
 				output.write(l+ "\n");
